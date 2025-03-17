@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  vetdb:
+    build: 
+      context: ./Docker-file/db
+    image: jaicswamy962/javadb
+    container_name: vetdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - vetdbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=veturms@HitpL2025
+
+  vetcache01:
+    image: memcached
+    ports:
+      - "11211:11211"
+
+  vetmq01:
+    image: rabbitmq
+    ports:
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  vetapp:
+    build: 
+      context: ./Docker-file/app
+    image: jaicswamy962/javaapp
+    container_name: vetapp
+    ports:
+      - "8080:8080"
+    volumes:
+      - vetappdata:/usr/local/tomcat/webapps
+    
+  vetweb:
+    build: 
+      context: ./Docker-file/web
+    image: vprocontainers/javaweb
+    container_name: vetweb
+    ports:
+      - "80:80"
+
+volumes:
+   vetdbdata: {}
+   vetappdata: {}
+  
