@@ -7,23 +7,8 @@ services:
     container_name: vetdb
     ports:
       - "3306:3306"
-    volumes:
-      - vetdbdata:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=veturms@HitpL2025
-
-  vetcache01:
-    image: memcached
-    ports:
-      - "11211:11211"
-
-  vetmq01:
-    image: rabbitmq
-    ports:
-      - "5672:5672"
-    environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
 
   vetapp:
     build: 
@@ -32,9 +17,7 @@ services:
     container_name: vetapp
     ports:
       - "8080:8080"
-    volumes:
-      - vetappdata:/usr/local/tomcat/webapps
-    
+ 
   vetweb:
     build: 
       context: ./Docker-file/web
@@ -43,7 +26,5 @@ services:
     ports:
       - "80:80"
 
-volumes:
-   vetdbdata: {}
-   vetappdata: {}
+
   
