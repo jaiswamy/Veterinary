@@ -1,4 +1,4 @@
-FROM mysql:5.6.20
+FROM mysql:5
 LABEL "Project"="VETBIDATCOL"
 LABEL "Author"="Jai"
 
