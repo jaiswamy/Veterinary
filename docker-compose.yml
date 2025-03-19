@@ -1,6 +1,8 @@
-   vetdb:
-     build:
-       c
+  vetdb:
+    build:
+      context: ./Dockerfile/db
+    image: jaicswamy962/javadb
+    container_name: vetdb
     environment:
       MYSQL_ROOT_PASSWORD: mysqlroot
       MYSQL_DATABASE: db_veturmsn
