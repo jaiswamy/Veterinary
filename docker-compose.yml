@@ -17,13 +17,4 @@ services:
     ports:
       - "8080:8080"
  
-  vetweb:
-    build: 
-      context: ./Docker-file/web
-    image: vprocontainers/javaweb
-    container_name: vetweb
-    ports:
-      - "80:80"
-
-
-  
+ 
