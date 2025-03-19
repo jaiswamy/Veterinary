@@ -1,3 +1,6 @@
+   vetdb:
+     build:
+       c
     environment:
       MYSQL_ROOT_PASSWORD: mysqlroot
       MYSQL_DATABASE: db_veturmsn
