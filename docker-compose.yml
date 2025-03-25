@@ -11,6 +11,8 @@ services:
       MYSQL_PASSWORD: veturms@HitpL2025
     ports:
       - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
     networks:
       - tomcat-network
 
@@ -21,16 +23,18 @@ services:
     image: javaapp
     container_name: tomcatapp
     restart: always
+    depends_on:
+      - mysql
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
       MYSQL_DB: db_veturmsn
       MYSQL_USER: veturms
       MYSQL_PASSWORD: veturms@HitpL2025
+    volumes:
+      - ./UniversityResearchManagementSystem-0.1.war:/usr/local/tomcat/webapps/ROOT.war
     ports:
       - "8080:8080"
-    depends_on:
-      - mysql
     networks:
       - tomcat-network
 
