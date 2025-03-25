@@ -3,6 +3,7 @@ services:
   mysql:
     image: mysql:5
     container_name: vetdb
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mysql123
       MYSQL_DATABASE: db_veturmsn
@@ -19,6 +20,7 @@ services:
       context: ./Docker-file/app
     image: javaapp
     container_name: tomcatapp
+    restart: always
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
