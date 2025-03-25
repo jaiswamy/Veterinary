@@ -11,7 +11,7 @@ RUN curl -L -o mysql-connector-java-5.1.29.tar.gz https://downloads.mysql.com/ar
     mv mysql-connector-java-5.1.29/mysql-connector-java-5.1.29-bin.jar /usr/local/tomcat/lib/ && \
     rm -rf mysql-connector-java-5.1.29 mysql-connector-java-5.1.29.tar.gz
 
-ENV DB_HOST=localhost \
+ENV DB_HOST=db \
     DB_PORT=3306 \
     DB_NAME=db_veturmsn \
     DB_USER=root \
