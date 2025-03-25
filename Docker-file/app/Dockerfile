@@ -5,7 +5,6 @@ LABEL "Author"="Jai"
 WORKDIR /usr/local/tomcat/webapps/
 RUN rm -rf ROOT*
 COPY UniversityResearchManagementSystem-0.1.war ROOT.war
-RUN chown -R root:root ROOT.war
 RUN wget -O mysql-connector-java-5.1.29.tar.gz https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-5.1.29.tar.gz && \
     tar -xzvf mysql-connector-java-5.1.29.tar.gz && \
     mv mysql-connector-java-5.1.29/mysql-connector-java-5.1.29-bin.jar /usr/local/tomcat/lib/ && \
