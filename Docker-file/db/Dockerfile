@@ -7,5 +7,5 @@ ENV MYSQL_DATABASE="db_veturmsn"
 ENV MYSQL_USERNAME="veturms"
 ENV MYSQL_PASSWORD="veturms@HitpL2025"
 
-COPY veturmsn.sql /docker-entrypoint-initdb.d/veturmsn.sql
+ADD veturmsn.sql /docker-entrypoint-initdb.d/veturmsn.sql
 EXPOSE 3306
