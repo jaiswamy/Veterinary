@@ -1,24 +1,25 @@
 version: '3.8'
 services:   
-   vetdb:
-    build:
-      context: ./Dockerfile/db
-    image: jaicswamy962/javadb
+  vetdb:
+  mysql:
+    image: mysql:5
     container_name: vetdb
     environment:
-      MYSQL_ROOT_PASSWORD: mysqlroot
+      MYSQL_ROOT_PASSWORD: mysql123
       MYSQL_DATABASE: db_veturmsn
       MYSQL_USER: veturms
       MYSQL_PASSWORD: veturms@HitpL2025
     ports:
       - "3306:3306"
+    networks:
+      - tomcat-network
 
-
-   vetapp:
+      
+  tomcat:
     build:
       context: ./Docker-file/app
-    image: jaicswamy962/javaapp
-    container_name: vetapp
+    image: javaapp
+    container_name: tomcatapp
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
@@ -27,5 +28,14 @@ services:
       MYSQL_PASSWORD: veturms@HitpL2025
     ports:
       - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - tomcat-network
+
+networks:
+  tomcat-network:  # Custom network for communication between Tomcat and MySQL
+    driver: bridge
+
 
  
