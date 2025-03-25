@@ -1,4 +1,6 @@
-  vetdb:
+version: '3.8'
+services:   
+   vetdb:
     build:
       context: ./Dockerfile/db
     image: jaicswamy962/javadb
@@ -12,7 +14,7 @@
       - "3306:3306"
 
 
-  vetapp:
+   vetapp:
     build:
       context: ./Docker-file/app
     image: jaicswamy962/javaapp
