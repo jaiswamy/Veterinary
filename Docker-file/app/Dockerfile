@@ -5,17 +5,17 @@ LABEL "Author"="Jai"
 WORKDIR /usr/local/tomcat/webapps/
 RUN rm -rf ROOT*
 COPY UniversityResearchManagementSystem-0.1.war ROOT.war
-RUN chmod 644 ROOT.war
-RUN curl -L -o mysql-connector-java-5.1.29.tar.gz https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.29.tar.gz && \
-    tar -xzvf mysql-connector-java-5.1.29.tar.gz -C /usr/local/tomcat/lib/ && \
-    rm /usr/local/tomcat/lib/mysql-connector-java-5.1.29.tar.gz
+RUN chown -R root:root ROOT.war
+RUN curl -L -o mysql-connector-java-5.1.29.tar.gz https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-5.1.29.tar.gz && \
+    tar -xzvf mysql-connector-java-5.1.29.tar.gz && \
+    mv mysql-connector-java-5.1.29/mysql-connector-java-5.1.29-bin.jar /usr/local/tomcat/lib/ && \
+    rm -rf mysql-connector-java-5.1.29 mysql-connector-java-5.1.29.tar.gz
 
-
-ENV DB_HOST=localhost
-ENV DB_PORT=3306
-ENV DB_NAME=db_veturmsn
-ENV DB_USER=root
-ENV DB_PASSWORD=mysql123
+ENV DB_HOST=localhost \
+    DB_PORT=3306 \
+    DB_NAME=db_veturmsn \
+    DB_USER=root \
+    DB_PASSWORD=mysql123
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
