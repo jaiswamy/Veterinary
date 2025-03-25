@@ -1,6 +1,6 @@
 version: '3.8'
 services:   
-  mysql:
+  db:
     image: mysql:5
     container_name: vetdb
     restart: always
@@ -26,7 +26,7 @@ services:
     depends_on:
       - mysql
     environment:
-      MYSQL_HOST: mysql
+      MYSQL_HOST: db
       MYSQL_PORT: 3306
       MYSQL_DB: db_veturmsn
       MYSQL_USER: veturms
