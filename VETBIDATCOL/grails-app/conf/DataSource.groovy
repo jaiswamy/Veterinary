@@ -2,8 +2,8 @@ dataSource {
 	pooled = true
 	driverClassName = "com.mysql.jdbc.Driver"
 	dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
-	username="UniversityResearchMS"
-	password="Un!vErS!tYRmS"
+	username="veturms"
+	password="veturms@HitpL2025"
 }
 hibernate {
 	cache.use_second_level_cache = true
@@ -95,7 +95,7 @@ environments {
 		dataSource {
 			pooled = true
 			dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-			url = "jdbc:mysql://localhost:3306/db_veturmsn?useUnicode=yes&characterEncoding=UTF-8"
+			url = "jdbc:mysql://172.18.0.3:3306/db_veturmsn?useUnicode=yes&characterEncoding=UTF-8"
 			username = "veturms"
 			password = "veturms@HitpL2025"//old:mysql123
 			// dbCreate = "update"
