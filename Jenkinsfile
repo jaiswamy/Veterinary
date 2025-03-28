@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
+
     environment {
         DOCKER_IMAGE = "jaicswamy962/javaapp:latest"
     }
@@ -8,16 +12,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'git@github.com:your-repo.git'
-            }
-        }
-
-        stage('Build Grails WAR') {
-            steps {
-                sh '''
-                cd VETBIDATCOL
-                ./grailsw war
-                '''
+                git branch: 'main', url: 'git@github.com:jaiswamy/Veterinary.git', credentialsId: 'github-ssh-key'
             }
         }
 
