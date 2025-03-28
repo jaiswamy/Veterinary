@@ -34,3 +34,14 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 http://13.235.59.80:8081
 
+
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
+
+
+
