@@ -27,7 +27,7 @@ sudo netstat -tulnp | grep java
 
 sudo ufw allow 8081
 sudo ufw reload
-
+sudo ufw enable
 sudo ufw status
 
 sudo nano /lib/systemd/system/jenkins.service
