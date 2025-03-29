@@ -16,12 +16,13 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build and Push Docker Image') {
             steps {
                 sh '''
-                docker build -t $DOCKER_IMAGE -f Docker-file/app/Dockerfile .
+                cd Docker-file/app
+                docker-compose build
                 docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-                docker push $DOCKER_IMAGE
+                docker-compose push
                 '''
             }
         }
