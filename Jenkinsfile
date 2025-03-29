@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'git@github.com:jaiswamy/Veterinary.git', credentialsId: 'github-ssh-key'
+                git branch: 'main', url: 'git@github.com:jaiswamy/Veterinary.git', credentialsId: 'github-credentials'
             }
         }
 
