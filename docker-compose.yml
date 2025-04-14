@@ -1,5 +1,5 @@
-version: '3.8'
-services:   
+version: '3.3'
+services:
   db:
     image: mysql:5.6
     container_name: vetdb
@@ -17,9 +17,9 @@ services:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       retries: 5
-      start_period: 20s
 
-      
+
+
   tomcat:
     build:
       context: ./Docker-file/app
@@ -27,8 +27,7 @@ services:
     container_name: tomcatapp
     restart: always
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     environment:
       MYSQL_HOST: db
       MYSQL_PORT: 3306
@@ -56,10 +55,9 @@ services:
     networks:
       - tomcat-network
 
-
 networks:
   tomcat-network:  # Custom network for communication between Tomcat and MySQL
     driver: bridge
 
 
- 
+
