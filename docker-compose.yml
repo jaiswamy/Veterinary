@@ -4,20 +4,23 @@ services:
     image: mysql:5.6
     container_name: vetdb
     restart: always
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: mysql123
       MYSQL_DATABASE: db_veturmsn
       MYSQL_USER: veturms
       MYSQL_PASSWORD: veturms@HitpL2025
     ports:
-      - "3306:3306"
+      - "3309:3306"
     networks:
       - tomcat-network
+
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       retries: 5
-
 
 
   tomcat:
@@ -29,13 +32,14 @@ services:
     depends_on:
       - db
     environment:
+      CATALINA_OPTS: "-Xms64m -Xmx128m -XX:+UseContainerSupport -XX:MaxRAMPercentage=30.0"
       MYSQL_HOST: db
       MYSQL_PORT: 3306
       MYSQL_DB: db_veturmsn
       MYSQL_USER: veturms
       MYSQL_PASSWORD: veturms@HitpL2025
     ports:
-      - "8080:8080"
+      - "8089:8080"
     networks:
       - tomcat-network
 
@@ -47,17 +51,14 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./certbot/www:/var/www/certbot
+      - ./ng      - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
     depends_on:
       - tomcat
     networks:
       - tomcat-network
 
+
 networks:
   tomcat-network:  # Custom network for communication between Tomcat and MySQL
     driver: bridge
-
-
-
